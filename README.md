@@ -5,7 +5,7 @@ This program performs an FFT on mic input samples using [Mark Borgerding](https:
 
 
 ### Context
-The documentation for the [Sense ESP32S3](https://github.com/Seeed-Studio/wiki-documents/blob/docusaurus-version/docs/Sensor/SeeedStudio_XIAO/SeeedStudio_XIAO_ESP32S3_Sense/XIAO_ESP32S3_Sense_mic.md) is not the most enlightening, giving only an Arduinolang sketch. Due to using the Arduino framework wrapper for the ESP-IDF, the IDF used is an older version (presently `v4.4.5`, and uses a now-deprecated i2s library.  
+The documentation for the [Sense ESP32S3](https://github.com/Seeed-Studio/wiki-documents/blob/docusaurus-version/docs/Sensor/SeeedStudio_XIAO/SeeedStudio_XIAO_ESP32S3_Sense/XIAO_ESP32S3_Sense_mic.md) is not the most enlightening, giving only an Arduinolang sketch. Due to using the Arduino framework wrapper for the ESP-IDF, the IDF used is an older version (presently `v4.4.5`), and uses a now-deprecated i2s library.  
 
 Whereas IDF `v5` has a dedicated PDM interface for i2s, `v4` integrated PDM connection with the rest of the standard i2s protocols, like so:
 ```C++
