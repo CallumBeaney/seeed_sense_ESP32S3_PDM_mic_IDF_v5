@@ -1,4 +1,4 @@
-# I2S implementation for the Seeed Studio Xiao Sense ESP32S3 model
+# Basic usage of Seeed Studio Xiao ESP32S3 Sense's PDM microphone for ESP-IDF v5
 
 The Sense ESP32S3 model uses a Pulse Modulation Density microphone, which on some models appears to be a different microphone than what is shown in the tech sheet.  
 
