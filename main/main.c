@@ -11,7 +11,7 @@ float getMaxMagnitude(kiss_fft_cpx* fd, int sr, int ns, int sf);
 void printFFTData(kiss_fft_cpx* fd, int sr, int ns, int sf);
 
 const int       NUM_SAMPLES = 2000; 
-const uint32_t  SAMPLE_RATE = 16000; // this should not be changed
+const uint32_t  SAMPLE_RATE = 16000;
 
 const i2s_port_t MIC_PORT = I2S_NUM_0;
 const gpio_num_t MIC_WS   = GPIO_NUM_42;
@@ -47,14 +47,14 @@ void app_main(void)
   kiss_fftr(config, fftInput, freqDomain); // do FFT
   
 
-  int starting_frequency = 0;
-  ESP_LOGI(FFT, "Printing first 100 frequencies, and including the %dHz frequency point in normalisation.", starting_frequency);
+  int startingFrequency = 0;
+  ESP_LOGI(FFT, "Printing first 100 frequencies, and including the %dHz frequency point in normalisation.", startingFrequency);
   ESP_LOGI(FFT, "Note how DC bias affects the normalised signal at this index.");
-  printFFTData(freqDomain, SAMPLE_RATE, NUM_SAMPLES, starting_frequency);
+  printFFTData(freqDomain, SAMPLE_RATE, NUM_SAMPLES, startingFrequency);
   
-  ESP_LOGI(FFT, "Now printing first 100 frequencies, and normalising from %dHz onwards.", starting_frequency);
-  starting_frequency = 10;
-  printFFTData(freqDomain, SAMPLE_RATE, NUM_SAMPLES, starting_frequency);
+  ESP_LOGI(FFT, "Now printing first 100 frequencies, and normalising from %dHz onwards.", startingFrequency);
+  startingFrequency = 10;
+  printFFTData(freqDomain, SAMPLE_RATE, NUM_SAMPLES, startingFrequency);
 
 
   // cleanup
@@ -71,11 +71,11 @@ void app_main(void)
 
 void printFFTData(kiss_fft_cpx* fd, int sr, int ns, int sf) 
 {
-  float maxMag = getMaxMagnitude(fd, sr, ns, sf);
+  float mm = getMaxMagnitude(fd, sr, ns, sf);
     for (int i = 0; i < 100; i++) {
-    int frequency = i * SAMPLE_RATE / NUM_SAMPLES;
+    int frequency = i * sr / ns;
     float amplitude = fabs(fd[i].r);
-    int normalised = (int)(fabs(fd[i].r / maxMag) * 100); // as percentage
+    int normalised = (int)(fabs(fd[i].r / mm) * 100); // as percentage
     fprintf(stdout, "\t%dHz\tAmp: %.2f\t%%: %d\n", frequency, amplitude, normalised);
   }
   fprintf(stdout, "\n\n");

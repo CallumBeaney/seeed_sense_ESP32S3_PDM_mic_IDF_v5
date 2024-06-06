@@ -46,7 +46,7 @@ esp_i2s::i2s_pin_config_t pin_config = {
 ```
    
 #### ESP IDF v5 
-In IDF `v5`'s dedicated PDM interface, the Word Select (`GPIO 42`) is used as the clock:  
+In IDF `v5`'s dedicated PDM interface, the Word Select (`GPIO 42`) is used for the clock:  
 ```
 i2s_pdm_rx_gpio_config_t gpio_cfg = {
     .clk = wordSelect,
